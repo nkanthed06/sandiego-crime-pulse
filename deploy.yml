@@ -1,0 +1,42 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Build
+        run: npm run build
+        
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+```
+
+## 3. Enable GitHub Pages
+
+1. Go to your repo on GitHub
+2. **Settings** → **Pages** (left sidebar)
+3. Under "Source", select **gh-pages** branch
+4. Click **Save**
+
+## 4. Push and wait
+
+After pushing these changes, GitHub Actions will build and deploy automatically. Your site will be live at:
+```
+https://yourusername.github.io/your-repo-name/
