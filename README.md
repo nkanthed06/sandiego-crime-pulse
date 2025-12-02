@@ -39,3 +39,8 @@ npm run dev
 - shadcn-ui
 - Tailwind CSS
 - Recharts
+
+
+
+
+
